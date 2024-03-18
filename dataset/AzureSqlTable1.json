@@ -1,0 +1,76 @@
+{
+	"name": "AzureSqlTable1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureSqlDB",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "model",
+				"type": "varchar"
+			},
+			{
+				"name": "mpg",
+				"type": "decimal",
+				"precision": 14,
+				"scale": 2
+			},
+			{
+				"name": "disp",
+				"type": "decimal",
+				"precision": 14,
+				"scale": 2
+			},
+			{
+				"name": "hp",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "drat",
+				"type": "decimal",
+				"precision": 14,
+				"scale": 2
+			},
+			{
+				"name": "wt",
+				"type": "decimal",
+				"precision": 14,
+				"scale": 2
+			},
+			{
+				"name": "qsec",
+				"type": "decimal",
+				"precision": 14,
+				"scale": 2
+			},
+			{
+				"name": "vs",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "am",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "gear",
+				"type": "int",
+				"precision": 10
+			},
+			{
+				"name": "carb",
+				"type": "int",
+				"precision": 10
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "mtcars"
+		}
+	}
+}
