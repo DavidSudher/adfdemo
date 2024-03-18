@@ -5,6 +5,9 @@
 		"factoryName": {
 			"value": "adfdkdemo"
 		},
+		"AzureSqlDB_connectionString": {
+			"value": ""
+		},
 		"linkadlsgen2_accountKey": {
 			"value": ""
 		},
