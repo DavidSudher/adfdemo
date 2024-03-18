@@ -6,6 +6,14 @@
 			"type": "string",
 			"metadata": "Data Factory name",
 			"defaultValue": "adfdkdemo"
+		},
+		"linkadlsgen2_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'linkadlsgen2'"
+		},
+		"linkadlsgen2_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://dkdemoadlsgen2.dfs.core.windows.net/"
 		}
 	},
 	"variables": {
@@ -41,6 +49,147 @@
 					"elapsedTimeMetric": {}
 				},
 				"annotations": []
+			},
+			"dependsOn": []
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
+			"type": "Microsoft.DataFactory/factories/pipelines",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"activities": [
+					{
+						"name": "Get Metadata1",
+						"type": "GetMetadata",
+						"dependsOn": [],
+						"policy": {
+							"timeout": "0.12:00:00",
+							"retry": 0,
+							"retryIntervalInSeconds": 30,
+							"secureOutput": false,
+							"secureInput": false
+						},
+						"userProperties": [],
+						"typeProperties": {
+							"dataset": {
+								"referenceName": "csv",
+								"type": "DatasetReference",
+								"parameters": {}
+							},
+							"fieldList": [
+								"childItems"
+							],
+							"storeSettings": {
+								"type": "AzureBlobFSReadSettings",
+								"recursive": true,
+								"enablePartitionDiscovery": false
+							},
+							"formatSettings": {
+								"type": "DelimitedTextReadSettings"
+							}
+						}
+					}
+				],
+				"policy": {
+					"elapsedTimeMetric": {}
+				},
+				"annotations": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/datasets/csv')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/csv')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "linkadlsgen2",
+					"type": "LinkedServiceReference"
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "AzureBlobFSLocation",
+						"fileSystem": "csv"
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": [
+					{
+						"name": "model",
+						"type": "String"
+					},
+					{
+						"name": "mpg",
+						"type": "String"
+					},
+					{
+						"name": "cyl",
+						"type": "String"
+					},
+					{
+						"name": "disp",
+						"type": "String"
+					},
+					{
+						"name": "hp",
+						"type": "String"
+					},
+					{
+						"name": "drat",
+						"type": "String"
+					},
+					{
+						"name": "wt",
+						"type": "String"
+					},
+					{
+						"name": "qsec",
+						"type": "String"
+					},
+					{
+						"name": "vs",
+						"type": "String"
+					},
+					{
+						"name": "am",
+						"type": "String"
+					},
+					{
+						"name": "gear",
+						"type": "String"
+					},
+					{
+						"name": "carb",
+						"type": "String"
+					}
+				]
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/linkadlsgen2')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/linkadlsgen2')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"description": "linkadlsgen2",
+				"annotations": [],
+				"type": "AzureBlobFS",
+				"typeProperties": {
+					"url": "[parameters('linkadlsgen2_properties_typeProperties_url')]",
+					"accountKey": {
+						"type": "SecureString",
+						"value": "[parameters('linkadlsgen2_accountKey')]"
+					}
+				}
 			},
 			"dependsOn": []
 		}

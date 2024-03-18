@@ -5,6 +5,12 @@
 		"factoryName": {
 			"value": "adfdkdemo"
 		},
+		"linkadlsgen2_accountKey": {
+			"value": ""
+		},
+		"linkadlsgen2_properties_typeProperties_url": {
+			"value": "https://dkdemoadlsgen2.dfs.core.windows.net/"
+		},
 		"containerUri": {
 			"value": ""
 		},
