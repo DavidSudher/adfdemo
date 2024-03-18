@@ -147,13 +147,13 @@
 			]
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/pipeline2')]",
+			"name": "[concat(parameters('factoryName'), '/Metadata')]",
 			"type": "Microsoft.DataFactory/factories/pipelines",
 			"apiVersion": "2018-06-01",
 			"properties": {
 				"activities": [
 					{
-						"name": "Get Metadata1",
+						"name": "getmetadata",
 						"type": "GetMetadata",
 						"dependsOn": [],
 						"policy": {
@@ -175,7 +175,6 @@
 							],
 							"storeSettings": {
 								"type": "AzureBlobFSReadSettings",
-								"recursive": true,
 								"enablePartitionDiscovery": false
 							},
 							"formatSettings": {
